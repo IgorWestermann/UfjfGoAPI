@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using UfjfGoAPI.Domain.DTO.Users;
-using UfjfGoAPI.Services.Base;
+using UfjfGoAPI.Domain.DTO.Rides;
+using UfjfGoAPI.Services;
 
 namespace UfjfGoAPI.Controllers
 {
@@ -10,8 +10,13 @@ namespace UfjfGoAPI.Controllers
     {
         private readonly RideService _service;
 
+        public RideController(RideService service)
+        {
+            this._service = service;
+        }
+
         [HttpGet]
-        public IEnumerable<UserResponse> Get()
+        public IEnumerable<RideResponse> Get()
         {
             return _service.Find();
         }
@@ -25,6 +30,12 @@ namespace UfjfGoAPI.Controllers
                 return NotFound(response.Message);
 
             return Ok(response.Result);
+        }
+
+        [HttpGet("user/{id}")]
+        public IEnumerable<RideResponse> GetByUserId(int id)
+        {
+            return _service.FindByUserId(id);
         }
 
         [HttpPost]
@@ -43,7 +54,7 @@ namespace UfjfGoAPI.Controllers
 
 
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody] UserUpdateRequest updateModel)
+        public IActionResult Put(int id, [FromBody] RideUpdateRequest updateModel)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);

@@ -22,13 +22,10 @@ namespace UfjfGoAPI.Domain.DTO.Users
         [Required]
         public string? Phone { get; set; }
 
-        [Required]
         public string? Photo { get; set; }
 
-        [Required]
         public string? Cnh { get; set; }
 
-        [Required]
         public int User_type_id { get; set; } = 1;
 
 

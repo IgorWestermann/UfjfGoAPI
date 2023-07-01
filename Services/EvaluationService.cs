@@ -16,14 +16,14 @@ namespace UfjfGoAPI.Services
 
         public ServiceResponse<EvaluationResponse> CreateEvaluation(EvaluationCreateRequest model)
         {
-            var result = _db.Users.Where(user => user.Id == model.IdUser).FirstOrDefault();
+            var result = _db.Users.Where(user => user.Id == model.UserId).FirstOrDefault();
 
             if (result == null)
                 return new ServiceResponse<EvaluationResponse>("User not found");
 
             var newEvaluation = new Evaluation()
             {
-                IdUser = model.IdUser,
+                UserId = model.UserId,
                 Rate = model.Rate,
                 Content = model.Content,
             };

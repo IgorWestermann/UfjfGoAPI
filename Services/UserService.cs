@@ -37,7 +37,10 @@ namespace UfjfGoAPI.Services
 
         public IEnumerable<UserResponse>? Find()
         {
-            var result = _db.Users.Include(x => x.Evaluations).ToList();
+            var result = _db.Users
+                .Include(x => x.Evaluations)
+                .Include(y => y.Rides)
+                .ToList();
 
             IEnumerable<UserResponse> userList = result.Select(x => new UserResponse(x));
 
@@ -93,5 +96,7 @@ namespace UfjfGoAPI.Services
 
             return new ServiceResponse<bool>(true);
         }
+
+
     }
 }

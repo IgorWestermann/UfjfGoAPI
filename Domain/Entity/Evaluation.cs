@@ -5,10 +5,10 @@ namespace UfjfGoAPI.Domain.Entity
     public class Evaluation
     {
         [Key]
-        public int IdEvaluation { get; set; }
+        public int EvaluationId { get; set; }
 
         [Required]
-        public int IdUser { get; set; }
+        public int UserId { get; set; }
 
         [Range(1, 5,
         ErrorMessage = "Value must be between 1 and 5")]

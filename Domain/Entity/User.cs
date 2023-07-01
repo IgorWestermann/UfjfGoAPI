@@ -6,6 +6,7 @@ namespace UfjfGoAPI.Domain.Entity
     [Table("Users")]
     public class User
     {
+
         [Key]
         public int Id { get; set; }
 
@@ -33,11 +34,9 @@ namespace UfjfGoAPI.Domain.Entity
         [StringLength(11)]
         public string? Phone { get; set; }
 
-        [Required]
         [StringLength(255)]
         public string? Photo { get; set; }
 
-        [Required]
         [StringLength(10)]
         public string? Cnh { get; set; }
 
@@ -45,5 +44,7 @@ namespace UfjfGoAPI.Domain.Entity
         public int User_type_id { get; set; }
 
         public virtual ICollection<Evaluation> Evaluations { get; set; }
+
+        public virtual ICollection<Ride> Rides { get; set; }
     }
 }

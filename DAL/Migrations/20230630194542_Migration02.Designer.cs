@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using UfjfGoAPI.DAL;
 
@@ -11,9 +12,11 @@ using UfjfGoAPI.DAL;
 namespace UfjfGoAPI.DAL.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230630194542_Migration02")]
+    partial class Migration02
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -50,33 +53,6 @@ namespace UfjfGoAPI.DAL.Migrations
                     b.ToTable("Evaluations");
                 });
 
-            modelBuilder.Entity("UfjfGoAPI.Domain.Entity.Message", b =>
-                {
-                    b.Property<int>("MessageId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MessageId"));
-
-                    b.Property<string>("Content")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
-
-                    b.Property<int>("ReceiverId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("SenderId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("When")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("MessageId");
-
-                    b.ToTable("Messages");
-                });
-
             modelBuilder.Entity("UfjfGoAPI.Domain.Entity.Ride", b =>
                 {
                     b.Property<int>("RideId")
@@ -86,28 +62,23 @@ namespace UfjfGoAPI.DAL.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RideId"));
 
                     b.Property<DateTime>("Date")
-                        .IsUnicode(false)
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Destination")
                         .IsRequired()
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(max)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("From")
                         .IsRequired()
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(max)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("OnlyWoman")
-                        .IsUnicode(false)
                         .HasColumnType("bit");
 
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
                     b.Property<int>("Vagas")
-                        .IsUnicode(false)
                         .HasColumnType("int");
 
                     b.HasKey("RideId");

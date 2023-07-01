@@ -33,7 +33,12 @@ namespace UfjfGoAPI
             // Services
             services.AddTransient<UserService>();
             services.AddTransient<EvaluationService>();
+            services.AddTransient<RideService>();
+            services.AddTransient<MessageService>();
+
             //services.AddTransient<ProductService>();
+
+            services.AddHttpContextAccessor();
 
             var connectionString = "Server=.\\SQLExpress;Database=ufjfgo;Trusted_Connection=True;TrustServerCertificate=True";
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(connectionString));

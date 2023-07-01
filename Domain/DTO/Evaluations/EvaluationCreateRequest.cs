@@ -5,7 +5,7 @@ namespace UfjfGoAPI.Domain.DTO.Evaluations
     public class EvaluationCreateRequest
     {
         [Required]
-        public int IdUser { get; set; }
+        public int UserId { get; set; }
 
         [Required]
         public string Content { get; set; }
